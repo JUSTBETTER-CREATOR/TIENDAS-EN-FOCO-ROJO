@@ -27,18 +27,30 @@ jobs:
       - name: Descargar repo
         uses: actions/checkout@v4
 
+      - name: Preparar carpeta publica
+        shell: bash
+        run: |
+          rm -rf public
+          mkdir public
+          cp index.html public/index.html
+          if [ -f ".nojekyll" ]; then
+            cp .nojekyll public/.nojekyll
+          else
+            touch public/.nojekyll
+          fi
+
       - name: Configurar Pages
         uses: actions/configure-pages@v5
 
-      - name: Subir archivos del sitio
+      - name: Subir solo el mapa
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "./public"
 
       - name: Publicar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          timeout: 1800000
+          timeout: 600000
           error_count: 60
           reporting_interval: 10000
