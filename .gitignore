@@ -1,0 +1,14 @@
+# Archivos sensibles / locales
+/data/
+/records_local/
+/Salida_local/
+/salida_local/
+cache_coordenadas_tiendas_v3_validado.xlsx
+*.xls
+*.xlsx
+*.xlsm
+
+# Python
+__pycache__/
+*.pyc
+.env
